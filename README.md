@@ -187,7 +187,40 @@ npm run build
 node server/index.js
 ```
 
-The Express server serves the built frontend from `dist/public/` and the API routes from `/api/*`.
+The Express server serves the built frontend from `dist/` and the API routes from `/api/*`.
+
+---
+
+## Deployment (Vercel)
+
+### 1. Prerequisites
+
+- A [Vercel](https://vercel.com) account (free)
+- The project pushed to GitHub (`https://github.com/Pratyaksha37/LeadDesk`)
+
+### 2. Deploy
+
+1. Go to [vercel.com](https://vercel.com) → **Add New** → **Project**
+2. Import your GitHub repo (`Pratyaksha37/LeadDesk`)
+3. In the **Environment Variables** section, add:
+
+| Key | Value |
+|-----|-------|
+| `VITE_SUPABASE_URL` | `https://your-project.supabase.co` |
+| `VITE_SUPABASE_ANON_KEY` | your anon key |
+| `SUPABASE_URL` | `https://your-project.supabase.co` |
+| `SUPABASE_SERVICE_ROLE_KEY` | your service role key |
+
+4. Click **Deploy**
+5. Vercel detects `vercel.json` automatically — the build runs and deploys in ~1–2 minutes
+
+### 3. Verify
+
+1. Open the live Vercel URL (e.g., `https://leaddesk.vercel.app`)
+2. Submit a lead from the landing page
+3. Visit `/login` → sign in
+4. Confirm the lead appears in the admin dashboard
+5. Change its status and refresh — the change persists
 
 ---
 
@@ -248,8 +281,9 @@ I limited lead status to New, Contacted, and Closed so the system has predictabl
 
 After running the migration and creating an admin user:
 
-- **URL**: http://localhost:5173
+- **Local URL**: http://localhost:5173
 - **Admin login**: http://localhost:5173/login
+- **Live URL**: `https://leaddesk-mini.onrender.com` (after deploying)
 - **Email**: (the one you registered)
 - **Password**: (the one you set)
 
